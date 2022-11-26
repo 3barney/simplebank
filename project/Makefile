@@ -1,6 +1,5 @@
 DB_URL=postgresql://postgres:password@localhost:5432/simple_bank?sslmode=disable&timezone=UTC&connect_timeout=5
 
-
 postgres:
 	docker run --name postgres_simple_bank -p 5432:5432 -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=password -d postgres:14.0
 
@@ -19,7 +18,7 @@ migrate_down:
 sqlc:
 	cd ../ && sqlc generate
 
-
-
+test:
+	go test -v -cover ../...
 
 .PHONY: postgres createdb dropdb migrate_up migrate_down sqlc
